@@ -6,7 +6,7 @@ from root.utils import customer_image_file_path
 
 class Report(models.Model):
     name = models.CharField(max_length=100)
-    image = models.ImageField(default='default.jpg', upload_to=customer_image_file_path)
+    image = models.ImageField(upload_to=customer_image_file_path, blank=True)
     remarks = models.TextField()
     author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)

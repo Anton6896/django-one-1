@@ -18,7 +18,11 @@
     using bootstrap 5
     https://getbootstrap.com/docs/5.0/components/navbar/
     {% endcomment %}
-    <title>SuperOne | {% block title %} {% endblock title %}</title>
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>SuperOne-1</title>
+    {% endif %}
 </head>
 <body>
 
