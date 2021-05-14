@@ -9,10 +9,10 @@ from django.utils import timezone
 from root.utils import generate_id
 
 """
-for ech sale have one position 
+for ech sale have couple positions ! m2m field 
 ech sale have sales_man (Profile) and user (Customer) and can have couple Positions on it .
-(one sales_name on sale can sale 1-shirt , 3-pents etc. )
-ech Position have amount and price for this amount
+(one sales_name on sale can sale 1-shirt(pos1) , 3-pents(pos2) etc. )
+ech Position have amount and price for some product that was sailed 
 """
 
 
@@ -66,7 +66,6 @@ class Sale(models.Model):
             self.transaction_id = generate_id(17)
 
         return super().save(*args, **kwargs)
-
 
     def get_positions(self):
         return self.positions.all()
