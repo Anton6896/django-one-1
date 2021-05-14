@@ -7,21 +7,18 @@
     {% comment %} form {% endcomment %}
 
     <div class="container">
-
         <div class="row">
             <div class="col">
-                <form action="" method="post">
+                <form action="" method="POST">
                     {% csrf_token %}
                     {{ form | crispy }}
-                    <br>
-                    <button id="submit_search" type="submit" class="btn btn-primary">Look</button>
+                    <button id="submit_search" type="submit" class="btn btn-primary mt-3">Look</button>
                 </form>
             </div>
-            <div class="col-5">
 
+            <div class="col-5">
             </div>
             <div class="col">
-
             </div>
         </div>
     </div>
@@ -30,22 +27,7 @@
 
 
     {% comment %} end form {% endcomment %}
-    <div class="fixed-bottom">
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
-    </div>
+
 
 
 {% endblock content %}
