@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3> all sales : </h3>
+    {% for sale in sale_list %}
+        <p><a href="{{ sale.get_absolute_url }}">{{ sale.transaction_id }}</a></p>
+    {% endfor %}
+{% endblock content %}
+
