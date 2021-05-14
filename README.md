@@ -3,6 +3,8 @@
 project created by [freeCodeCamp.org](https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ) , [It self ](https://www.youtube.com/watch?v=04L0BbAcCpQ)
 , fro from using [bootstrap5](https://getbootstrap.com/docs/5.0/components/accordion/)
 
+* upload to [heroku](https://django-one.herokuapp.com/)
+
 # Epic 
  ...
 
