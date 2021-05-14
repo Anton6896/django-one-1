@@ -7,6 +7,7 @@ from profiles.models import Profile
 from django.utils import timezone
 
 from root.utils import generate_id
+from django.shortcuts import reverse
 
 """
 for ech sale have couple positions ! m2m field 
@@ -51,6 +52,9 @@ class Sale(models.Model):
 
     class Meta:
         db_table = 'sale'
+
+    def get_absolute_url(self):
+        return reverse('sales:detail', kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"id: {str(self.transaction_id)} - at: {self.created.strftime('%d/%m/%Y')}," \
