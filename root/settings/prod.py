@@ -2,7 +2,7 @@
 prod settings
 """
 
-ALLOWED_HOSTS = ['172.104.145.221', 'www.antlive.me', ]
+ALLOWED_HOSTS = ['https://django-one.herokuapp.com/', ]
 DEBUG = False
 
 
