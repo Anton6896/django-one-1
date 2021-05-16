@@ -28,6 +28,25 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col">
+                {% if data %}
+                    <p> {{ by_id | safe }}</p>
+                {% endif %}
+            </div>
+            <div class="col">
+                {% if data %}
+                    <p> {{ by_customer | safe }}</p>
+                {% endif %}
+            </div>
+            <div class="col">
+                {% if data %}
+                    <p> {{ by_salesman | safe }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+
     </div>
 
     {% comment %} end form {% endcomment %}

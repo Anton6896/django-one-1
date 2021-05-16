@@ -8,11 +8,9 @@ from django.contrib import messages
 
 
 # work with database
-def sales_and_positions(date_from, date_to, chart_type=None, request=None):
+def sales_and_positions(date_from, date_to, chart_type=None, request=None) -> dict or None:
     sales_df = None
     positions_df = None
-    sales_df_to_html = None
-    positions_to_html = None
     merge_df = None
     positions_list = []
 
@@ -53,10 +51,18 @@ def sales_and_positions(date_from, date_to, chart_type=None, request=None):
         }, axis=1, inplace=True)
 
         merge_df = pd.merge(sales_df, positions_df, on="sale_id")
-        # amazing bootstrap classes (its a free magic)
-        html = merge_df.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
-        return html
 
+        by_id = merge_df.groupby('transaction_id', as_index=False)['price'].agg('sum')
+        by_customer = merge_df.groupby('customer', as_index=False)['price'].agg('sum')
+        by_sales_man = merge_df.groupby('sales man', as_index=False)['price'].agg('sum')
+
+        # amazing bootstrap classes (its a free magic)
+        main_df_html = merge_df.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
+        by_id_html = by_id.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
+        by_customer_html = by_customer.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
+        by_sales_man_html = by_sales_man.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
+
+        return main_df_html, by_id_html, by_customer_html, by_sales_man_html
 
     else:
         messages.warning(request, f'Sorry can not find data for this time period !')
