@@ -3,28 +3,51 @@
 
 {% block content %}
     <h3> home sales</h3>
-    <hr>
-    {% comment %} form {% endcomment %}
 
-    <div class="container">
+    {% comment %} form {% endcomment %}
+    <div class="container mt-3">
         <div class="row">
             <div class="col">
                 <form action="" method="POST">
                     {% csrf_token %}
                     {{ form | crispy }}
-                    <button id="submit_search" type="submit" class="btn btn-primary mt-3">Look</button>
+                    <button id="submit_search" type="submit" class="btn btn-primary mt-3 mb-5">Look</button>
                 </form>
             </div>
 
-            <div class="col-5">
-            </div>
-            <div class="col">
+            <div class="col-7">
+
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                {% if data %}
+                    <p> {{ data | safe }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {% if data %}
+                    <p> {{ by_id | safe }}</p>
+                {% endif %}
+            </div>
+            <div class="col">
+                {% if data %}
+                    <p> {{ by_customer | safe }}</p>
+                {% endif %}
+            </div>
+            <div class="col">
+                {% if data %}
+                    <p> {{ by_salesman | safe }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+
     </div>
-
-
-
 
     {% comment %} end form {% endcomment %}
 

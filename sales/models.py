@@ -36,6 +36,11 @@ class Position(models.Model):
         self.price = self.product.price * self.quantity
         return super().save(*args, **kwargs)
 
+    def get_sale_id(self):
+        # revers relation in orm db
+        sale_obj = self.sale_set.first()
+        return sale_obj.id
+
 
 class Sale(models.Model):
     """
