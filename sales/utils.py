@@ -72,7 +72,7 @@ def sales_and_positions(date_from, date_to, chart_type=None, request=None) -> di
         by_sales_man_html = by_sales_man.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
 
         # creating chart based on the user choose
-        chart = get_chart(chart_type, by_id, labels=by_id['transaction_id'].values)
+        chart = _get_chart(chart_type, by_id, labels=by_id['transaction_id'].values)
 
         # return as tuple all data
         return main_df_html, by_id_html, by_customer_html, by_sales_man_html, chart
@@ -113,25 +113,24 @@ def _get_graph():
     return graph
 
 
-def get_chart(chart_type, data, **kwargs):
+def _get_chart(chart_type, data, **kwargs):
     """
     by getting choose from user decide what kind of chart will return ,
     as data will use [sum(prise) grouped by transaction_id]
     """
+    # define plt config
     plt.switch_backend('AGG')
     plt.figure(figsize=(10, 4))
     plt.tight_layout()
 
+    # choose plt data and type
     if chart_type == "1":
-        print("1 : Bar Chart")
         plt.bar(data['transaction_id'], data['price'])
 
     elif chart_type == "2":
-        print("2 : Pie Chart")
         plt.pie(data=data, x='price', labels=kwargs['labels'])
 
     elif chart_type == "3":
-        print("3 : Line Chart")
         plt.plot(data['transaction_id'], data['price'])
 
     else:
