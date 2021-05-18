@@ -9,16 +9,12 @@ import pandas as pd
 from django.contrib import messages
 from io import BytesIO
 import matplotlib.pyplot as plt
-
-# global variables
-merge_df = None
+import seaborn as sns
 
 
 # work with database
-def sales_and_positions(date_from, date_to, chart_type=None, request=None) -> dict or None:
-    sales_df = None
-    positions_df = None
-    global merge_df
+def sales_and_positions(date_from, date_to, chart_type=None, result_by=None, request=None) -> dict or None:
+    positions_df = sales_df = chart = merge_df = None
     positions_list = []
 
     # load data to Pandas DataFrame for calculations
@@ -44,9 +40,11 @@ def sales_and_positions(date_from, date_to, chart_type=None, request=None) -> di
         sales_df = pd.DataFrame(sales_qs.values())
         positions_df = pd.DataFrame(positions_list)
 
-        # change customer id to customer name and salesman id to salesman name
-        # change column name
-        # created updated datetime look
+        """
+        ** updated datetime look
+            change customer id to customer name and salesman id to salesman name
+            change column name
+        """
         sales_df["customer_id"] = sales_df["customer_id"].apply(_get_customer_name)
         sales_df["sales_man_id"] = sales_df["sales_man_id"].apply(_get_salesman_name)
         sales_df["created"] = sales_df["created"].apply(lambda x: x.strftime('%d/%m/%Y'))
@@ -57,25 +55,26 @@ def sales_and_positions(date_from, date_to, chart_type=None, request=None) -> di
             "id": "sale_id"
         }, axis=1, inplace=True)
 
-        # created one big data source with all variables
+        # join two tables
         merge_df = pd.merge(sales_df, positions_df, on="sale_id")
-
-        # detailed view of big data
+        # grouping data for results by transaction_id , date_created
         by_id = merge_df.groupby('transaction_id', as_index=False)['price'].agg('sum')
-        by_customer = merge_df.groupby('customer', as_index=False)['price'].agg('sum')
-        by_sales_man = merge_df.groupby('sales man', as_index=False)['price'].agg('sum')
+        by_date = merge_df.groupby('created', as_index=False)['price'].agg('sum')
 
-        # amazing bootstrap classes (its a free magic), convert data to html tables
-        main_df_html = merge_df.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
-        by_id_html = by_id.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
-        by_customer_html = by_customer.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
-        by_sales_man_html = by_sales_man.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
+        #  convert data to html tables
+        main_df_html = _df_to_html(merge_df)
+        by_id_html = _df_to_html(by_id)
+        by_date_html = _df_to_html(by_date)
 
-        # creating chart based on the user choose
-        chart = get_chart(chart_type, by_id, labels=by_id['transaction_id'].values)
+        # creating chart based on the user choose (if its be more charts will use factory for it)
+        if result_by == "1":
+            chart = _get_chart(chart_type, by_id, labels=by_id['transaction_id'].values)
+
+        elif result_by == "2":
+            chart = _get_chart(chart_type, by_date, labels=by_date['created'].values)
 
         # return as tuple all data
-        return main_df_html, by_id_html, by_customer_html, by_sales_man_html, chart
+        return main_df_html, by_id_html, by_date_html, chart
 
     else:
         messages.warning(request, f'Sorry can not find data for this time period !')
@@ -113,29 +112,35 @@ def _get_graph():
     return graph
 
 
-def get_chart(chart_type, data, **kwargs):
+def _get_chart(chart_type, data, **kwargs):
     """
-    by getting choose from user decide what kind of chart will return ,
-    as data will use [sum(prise) grouped by transaction_id]
+    by getting choose from user decide what kind of chart will return , and what data (transaction or date)
+    will return generic column 0 , and price as data
     """
+    # define plt config
     plt.switch_backend('AGG')
     plt.figure(figsize=(10, 4))
     plt.tight_layout()
 
-    if chart_type == "1":
-        print("1 : Bar Chart")
-        plt.bar(data['transaction_id'], data['price'])
+    # choose plt data and type
+    if chart_type == "1":  # bar chart
+        # plt.bar(data['transaction_id'], data['price'])
+        sns.barplot(x=data.iloc[:, 0], y='price', data=data)  # seaborn
 
-    elif chart_type == "2":
-        print("2 : Pie Chart")
+    elif chart_type == "2":  # pie chart
         plt.pie(data=data, x='price', labels=kwargs['labels'])
 
-    elif chart_type == "3":
-        print("3 : Line Chart")
-        plt.plot(data['transaction_id'], data['price'])
+    elif chart_type == "3":  # line chart
+        plt.plot(data.iloc[:, 0], data['price'], linestyle='dashed', color='green')
 
     else:
         print(" -- some strange chart ! failed to identify it ...")
 
     chart = _get_graph()
     return chart
+
+
+def _df_to_html(df):
+    # return table as html bootstrap element
+    return df.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
+

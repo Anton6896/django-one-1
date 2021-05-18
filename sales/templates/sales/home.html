@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
+
+
+{# additioal js scripts above main #}
+{% block scripts %}
+    <script src="{% static "sales/home.js" %}" defer></script>
+{% endblock scripts %}
 
 {% block content %}
     <h3> home sales</h3>
@@ -12,7 +19,7 @@
                 {% comment %} look for the sales {% endcomment %}
                 <form action="" method="POST">
                     {% csrf_token %}
-                    {{ form | crispy }}
+                    {{ sale_form | crispy }}
                     <button id="submit_search" type="submit" class="btn btn-primary mt-3 mb-5">Look</button>
                 </form>
             </div>
@@ -40,28 +47,58 @@
             </div>
             <div class="col">
                 {% if data %}
-                    <p> {{ by_customer | safe }}</p>
+                    <p> {{ by_date | safe }}</p>
                 {% endif %}
             </div>
-            <div class="col">
-                {% if data %}
-                    <p> {{ by_salesman | safe }}</p>
-                {% endif %}
-            </div>
+
         </div>
 
         {% comment %} chart {% endcomment %}
         <div class="row mb-5">
             <div class="col">
                 {% if data %}
-                    <img src="data:image/png;base64, {{ chart | safe }}" alt="...">
+                    <img id="img_chart" src="data:image/png;base64, {{ chart | safe }}" alt="...">
                 {% endif %}
+                <br>
+
+                <!-- Modal for reporting -->
+                <button id="report_btn" type="button"
+                        class="not-visible btn btn-secondary mb-5"
+                        data-bs-toggle="modal"
+                        data-bs-target="#reportModal">
+                    add report
+                </button>
+
+
+                <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="reportModalLabel">Report form</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+
+                            <div id="alert_box"></div>
+                            <div class="modal-body" id="report_modal_body">
+                                <form method="POST" id="report_form">
+                                    {% csrf_token %}
+                                    {{ report_form | crispy }}
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                        <button id="report_save" type="submit" class="btn btn-primary">Save report
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-
-
-
-
-
 {% endblock content %}
