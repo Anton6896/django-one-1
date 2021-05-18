@@ -130,8 +130,6 @@ def _get_chart(chart_type, data, **kwargs):
     elif chart_type == "2":  # pie chart
         plt.pie(data=data, x='price', labels=kwargs['labels'])
 
-        plt.pie(data=data, x='price', labels=kwargs['labels'])
-
     elif chart_type == "3":  # line chart
         plt.plot(data.iloc[:, 0], data['price'], linestyle='dashed', color='green')
 
@@ -145,3 +143,4 @@ def _get_chart(chart_type, data, **kwargs):
 def _df_to_html(df):
     # return table as html bootstrap element
     return df.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
+
