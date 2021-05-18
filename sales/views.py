@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+
+from reports.forms import ReportForm
 from sales.models import Sale, Position
 from .forms import SaleSearchForm
 from django.db.models import Q
@@ -8,7 +10,8 @@ from .utils import sales_and_positions
 
 
 def home_view(request):
-    form = SaleSearchForm(request.POST or None)
+    sale_form = SaleSearchForm(request.POST or None)
+    report_form = ReportForm()
     data_main = by_id = customer = salesman = chart = None
 
     # allow to user search data for time periods
@@ -22,7 +25,8 @@ def home_view(request):
 
     context = {
         'title': 'Sales Home',
-        'form': form,
+        'sale_form': sale_form,
+        'report_form': report_form,
         'data': data_main,
         "by_id": by_id,
         "by_customer": customer,

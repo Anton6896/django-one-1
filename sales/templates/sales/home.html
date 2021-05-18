@@ -19,7 +19,7 @@
                 {% comment %} look for the sales {% endcomment %}
                 <form action="" method="POST">
                     {% csrf_token %}
-                    {{ form | crispy }}
+                    {{ sale_form | crispy }}
                     <button id="submit_search" type="submit" class="btn btn-primary mt-3 mb-5">Look</button>
                 </form>
             </div>
@@ -82,23 +82,17 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <form method="POST">
+
+                            <div id="alert_box"></div>
+                            <div class="modal-body" id="report_modal_body">
+                                <form method="POST" id="report_form">
                                     {% csrf_token %}
-                                    <div class="mb-3">
-                                        <input id="report_name" class="form-control" type="text"
-                                               placeholder="enter name"
-                                               aria-label="name">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Report</label>
-                                        <textarea class="form-control" id="report_text" rows="3"></textarea>
-                                    </div>
+                                    {{ report_form | crispy }}
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                                         </button>
-                                        <button type="submit" class="btn btn-primary">Save report</button>
+                                        <button id="report_save" type="button" class="btn btn-primary">Save report</button>
                                     </div>
                                 </form>
                             </div>
