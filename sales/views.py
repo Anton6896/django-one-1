@@ -9,7 +9,7 @@ from .utils import sales_and_positions
 
 def home_view(request):
     form = SaleSearchForm(request.POST or None)
-    data_main = by_id = customer = salesman = None
+    data_main = by_id = customer = salesman = chart = None
 
     # allow to user search data for time periods
     if request.method == 'POST':
@@ -18,7 +18,7 @@ def home_view(request):
         chart_type = request.POST.get('chart_type')
 
         # all logic in util.py file
-        data_main, by_id, customer, salesman = sales_and_positions(date_from, date_to, chart_type, request)
+        data_main, by_id, customer, salesman, chart = sales_and_positions(date_from, date_to, chart_type, request)
 
     context = {
         'title': 'Sales Home',
@@ -26,7 +26,8 @@ def home_view(request):
         'data': data_main,
         "by_id": by_id,
         "by_customer": customer,
-        "by_salesman": salesman
+        "by_salesman": salesman,
+        "chart": chart
     }
 
     return render(request, 'sales/home.html', context)

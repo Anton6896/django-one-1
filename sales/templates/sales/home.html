@@ -4,10 +4,12 @@
 {% block content %}
     <h3> home sales</h3>
 
-    {% comment %} form {% endcomment %}
+
     <div class="container mt-3">
+        {% comment %} form {% endcomment %}
         <div class="row">
             <div class="col">
+                {% comment %} look for the sales {% endcomment %}
                 <form action="" method="POST">
                     {% csrf_token %}
                     {{ form | crispy }}
@@ -19,7 +21,9 @@
 
             </div>
         </div>
+        {% comment %} end form {% endcomment %}
 
+        {% comment %} output from form {% endcomment %}
         <div class="row">
             <div class="col">
                 {% if data %}
@@ -46,10 +50,17 @@
             </div>
         </div>
 
-
+        {% comment %} chart {% endcomment %}
+        <div class="row mb-5">
+            <div class="col">
+                {% if data %}
+                    <img src="data:image/png;base64, {{ chart | safe }}" alt="...">
+                {% endif %}
+            </div>
+        </div>
     </div>
 
-    {% comment %} end form {% endcomment %}
+
 
 
 
