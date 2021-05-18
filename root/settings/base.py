@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'reports',
     'sales',
     'crispy_forms',
+    'jquery',
+
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
