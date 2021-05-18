@@ -9,6 +9,7 @@ import pandas as pd
 from django.contrib import messages
 from io import BytesIO
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # global variables
 merge_df = None
@@ -124,14 +125,15 @@ def _get_chart(chart_type, data, **kwargs):
     plt.tight_layout()
 
     # choose plt data and type
-    if chart_type == "1":
-        plt.bar(data['transaction_id'], data['price'])
+    if chart_type == "1":  # bar chart
+        # plt.bar(data['transaction_id'], data['price'])
+        sns.barplot(x='transaction_id', y='price', data=data)  # seaborn
 
-    elif chart_type == "2":
+    elif chart_type == "2":  # pie chart
         plt.pie(data=data, x='price', labels=kwargs['labels'])
 
-    elif chart_type == "3":
-        plt.plot(data['transaction_id'], data['price'])
+    elif chart_type == "3":  # line chart
+        plt.plot(data['transaction_id'], data['price'], linestyle='dashed', color='green')
 
     else:
         print(" -- some strange chart ! failed to identify it ...")
