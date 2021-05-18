@@ -20,7 +20,7 @@ def sales_and_positions(date_from, date_to, chart_type=None, result_by=None, req
     # load data to Pandas DataFrame for calculations
     sales_qs = Sale.objects.filter(Q(created__date__gte=date_from), Q(created__date__lte=date_to))
 
-    # if any sales founds
+    """# if any sales founds else output message """
     if len(sales_qs) > 0:
 
         for sale in sales_qs:
@@ -143,4 +143,3 @@ def _get_chart(chart_type, data, **kwargs):
 def _df_to_html(df):
     # return table as html bootstrap element
     return df.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
-

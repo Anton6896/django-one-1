@@ -27,8 +27,6 @@ report_btn.addEventListener('click', () => {
     report_form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        console.log("name: " + report_name.value + " remarks: " + report_text.value)
-
         const form_data = new FormData();
         form_data.append('csrfmiddlewaretoken', csrf);
         form_data.append('name', report_name.value);
@@ -37,16 +35,17 @@ report_btn.addEventListener('click', () => {
 
         // after getting report from user save it at the db with ajax
         $.ajax({
-            type: 'POST',
-            url: '/reports/create_report/',
+            type: "POST",
+            // Django is expecting ajax request at this url
+            url: "/reports/create_report/",
             data: form_data,
-            success: function (response) {
+            success: function (res) {
                 console.log("success ++++++++")
-                console.log(response)
+                console.log(res)
             },
-            error: function (error) {
+            error: function (err) {
                 console.log("ERROR ================")
-                console.log(error)
+                console.log(err)
             },
             // because having an bin img data
             processData: false,

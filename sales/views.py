@@ -22,7 +22,8 @@ def home_view(request):
         result_by = request.POST.get('result_by')
 
         # all logic in util.py file
-        data_all, by_id, by_date, chart = sales_and_positions(date_from, date_to, chart_type, result_by, request)
+        if sales_and_positions(date_from, date_to, chart_type, result_by, request):
+            data_all, by_id, by_date, chart = sales_and_positions(date_from, date_to, chart_type, result_by, request)
 
     context = {
         'title': 'Sales Home',

@@ -10,7 +10,10 @@ class ReportForm(forms.ModelForm):
     }))
 
     name = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Report name'}),
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Report name',
+            "id": "report_name",
+        }),
         label="Report name",
         required=True)
 
