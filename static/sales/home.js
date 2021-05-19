@@ -12,11 +12,21 @@ let modal_body = document.getElementById("report_modal_body");
 let report_form = document.getElementById("report_form");
 let report_name = document.getElementById("report_name");
 let report_text = document.getElementById("report_text");
+let alert_box = document.getElementById("alert_box");
+let report_modal = document.getElementById("reportModal");
 const csrf = document.getElementsByName("csrfmiddlewaretoken")[0].value
 
 
 if (img_chart) {
     report_btn.classList.remove("not-visible");
+}
+
+let alert_handler = (type, msg) => {
+    alert_box.innerHTML = `
+        <div class="alert alert-${type}" role="alert">
+            ${msg}
+        </div>
+    `
 }
 
 report_btn.addEventListener('click', () => {
@@ -40,10 +50,16 @@ report_btn.addEventListener('click', () => {
             data: form_data,
             success: function (response) {
                 console.log("success ++++++++")
-                console.log(response)
+                alert_handler('success', "report created")
+                // close modal after 2 sec
+                setTimeout(() => {
+                    $('#reportModal').modal('toggle');
+                }, 2000)
+
             },
             error: function (error) {
                 console.log("ERROR ================")
+                alert_handler('danger', "report not created, check with admin !")
                 console.log(error)
             },
             // because having an bin img data
