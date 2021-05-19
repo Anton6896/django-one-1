@@ -27,8 +27,6 @@ report_btn.addEventListener('click', () => {
     report_form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        console.log("name: " + report_name.value + " remarks: " + report_text.value)
-
         const form_data = new FormData();
         form_data.append('csrfmiddlewaretoken', csrf);
         form_data.append('name', report_name.value);
