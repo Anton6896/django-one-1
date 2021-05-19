@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from profiles.models import Profile
 from django.http import JsonResponse
-
+from django.contrib.auth.decorators import login_required
 from .models import Report
 from .utils import convert_image
+from django.views.generic import ListView, DetailView
 
 
+@login_required
 def create_report_view(request):
     if request.is_ajax():
         name = request.POST.get('name')
@@ -30,6 +32,13 @@ def create_report_view(request):
     })
 
 
-def all_reports_view(request):
-    # todo see list of all reports
-    pass
+class ReportslistView(ListView):
+    model = Report
+    template_name = 'reports/home_list.html'
+    context_object_name = 'reports_list'
+
+
+class ReportDetailView(DetailView):
+    model = Report
+    template_name = 'reports/detail.html'
+    context_object_name = 'report_obj'
