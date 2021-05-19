@@ -6,9 +6,12 @@ project created by [freeCodeCamp.org](https://www.youtube.com/channel/UC8butISFw
 * upload to [heroku](https://django-one.herokuapp.com/)
 
 # Epic 
- user can connect here and create a sales list like what he sold(Product) 
+ user can create a sales list (must be authenticated) like what he sold(Product) 
  amount in what price and to which customer, with this the program will store 
- and create charts based on users sales by dates to help tracking his progress 
+ and create charts by sales_id , date_created.
+
+ using two db (local for testing), Postgres for production
+ 
 
 # Using 
 * [bootstrap5](https://getbootstrap.com/docs/5.0/components/navbar/)
