@@ -1,4 +1,6 @@
 from django.db import models
+# from django.urls import reverse
+from django.shortcuts import reverse
 
 from profiles.models import Profile
 from root.utils import customer_image_file_path
@@ -14,3 +16,6 @@ class Report(models.Model):
 
     def __str__(self):
         return f"{str(self.name)} by {str(self.author.user)} at {self.created.strftime('%d/%m/%Y')}"
+
+    def get_absolute_url(self):
+        return reverse('reports:detail', kwargs={"pk": self.pk})

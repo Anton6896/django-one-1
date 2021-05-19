@@ -1,10 +1,10 @@
-console.log(" **** static home loaded ")
-
 /**
  * what is happening here is taking data from report form
  * and saving at the db thru hte ajax request
  * on the way adding some beauty to the frontEnd (like hiding buttons when its needed )
  * */
+
+console.log(" **** static loaded ")
 
 let report_btn = document.getElementById("report_btn");
 let img_chart = document.getElementById("img_chart");
@@ -26,8 +26,6 @@ report_btn.addEventListener('click', () => {
 
     report_form.addEventListener('submit', (e) => {
         e.preventDefault();
-
-        console.log("name: " + report_name.value + " remarks: " + report_text.value)
 
         const form_data = new FormData();
         form_data.append('csrfmiddlewaretoken', csrf);
