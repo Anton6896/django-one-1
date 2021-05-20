@@ -3,6 +3,11 @@ let transfer = document.getElementById("transfer");
 const csrf = document.getElementsByName("csrfmiddlewaretoken")[0].value
 
 
+let user_redirect = () => {
+    location.replace("https://django-one.herokuapp.com/reports/list/")
+}
+
+
 form_delete.addEventListener("submit", e => {
     e.preventDefault()
 
@@ -17,6 +22,7 @@ form_delete.addEventListener("submit", e => {
         success: function (res) {
             console.log("ajax ok +++")
             $('#exampleModal').modal('toggle');
+            user_redirect()
         },
         error: function (err) {
             console.log("========== ERROR")

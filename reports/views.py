@@ -60,7 +60,10 @@ def delete_report(request):
             messages.success(request, f'report was completely deleted !')
             # django das not redirecting user for this point , with this approach
             # i can do that with delete_view but not with ajax
-            return render(request, 'sales/home.html')
+            # for now its use the hardcoded redirection to heroku by js
+            return JsonResponse({
+                'status': 1, 'message': "great"
+            })
 
     messages.warning(request, f'have some issue with this  !')
     return JsonResponse({
