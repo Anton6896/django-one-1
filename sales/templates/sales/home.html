@@ -78,11 +78,15 @@
                                 <h5 class="modal-title" id="reportModalLabel">Report form</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
+                                <br>
+
                             </div>
 
-                            <div id="alert_box"></div>
+
                             {% comment %}  inset img_chart via js  {% endcomment %}
                             <div class="modal-body" id="report_modal_body">
+                                <div id="alert_box"></div>
+                                <br>
                                 <form method="POST" id="report_form">
                                     {% csrf_token %}
                                     {{ report_form | crispy }}

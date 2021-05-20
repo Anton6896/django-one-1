@@ -21,7 +21,7 @@ if (img_chart) {
     report_btn.classList.remove("not-visible");
 }
 
-let alert_handler = (type, msg) => {
+let alert_creator = (type, msg) => {
     alert_box.innerHTML = `
         <div class="alert alert-${type}" role="alert">
             ${msg}
@@ -50,7 +50,7 @@ report_btn.addEventListener('click', () => {
             data: form_data,
             success: function (response) {
                 console.log("success ++++++++")
-                alert_handler('success', "report created")
+                alert_creator('success', "report created")
                 // close modal after 2 sec
                 setTimeout(() => {
                     $('#reportModal').modal('toggle');
@@ -59,7 +59,7 @@ report_btn.addEventListener('click', () => {
             },
             error: function (error) {
                 console.log("ERROR ================")
-                alert_handler('danger', "report not created, check with admin !")
+                alert_creator('danger', "report not created, check with admin !")
                 console.log(error)
             },
             // because having an bin img data

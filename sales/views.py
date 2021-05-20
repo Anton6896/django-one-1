@@ -2,9 +2,8 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 
 from reports.forms import ReportForm
-from sales.models import Sale, Position
+from sales.models import Sale
 from .forms import SaleSearchForm
-from django.db.models import Q
 
 from .utils import sales_and_positions
 
