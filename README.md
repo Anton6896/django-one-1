@@ -8,6 +8,7 @@ project idea from  [freeCodeCamp.org](https://www.youtube.com/channel/UC8butISFw
 User creating sales , ech sale contain some product , amount and price. user cab look for his preferred sales through
 the search field from date to date, by different graph that shown by date or sale transaction. user can save report for
 this data, user can see all reports history.
+user can upload csv file and Django will handle the file data throe the db 
 
 # Using tech
 
