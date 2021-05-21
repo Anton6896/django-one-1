@@ -9,6 +9,6 @@ urlpatterns = [
     path('list/', ReportslistView.as_view(), name="list"),
     path('detail/<int:pk>', ReportDetailView.as_view(), name="detail"),
     path('delete/', delete_report, name="delete_report"),
-    path('render_pdf/', render_pdf_view, name="pdf_view"),
+    path('render_pdf/<int:pk>', render_pdf_view, name="pdf_view"),
 
 ]

@@ -21,11 +21,11 @@
         {% if user.is_authenticated %}
             {% if report_obj.author.user == user %}
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Launch demo modal
+                    Delete report
                 </button>
             {% endif %}
         {% endif %}
-        <a href="#">
+        <a href="{% url 'reports:pdf_view' pk=report_obj.pk %}">
             <button type="button" class="btn btn-info">PDF</button>
         </a>
 
