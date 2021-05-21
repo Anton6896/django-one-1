@@ -6,11 +6,12 @@
 {# additioal js scripts above main #}
 {% block scripts %}
     <script src="{% static "sales/home.js" %}" defer></script>
+    <script src="{% static "sales/upload.js" %}" defer></script>
+
 {% endblock scripts %}
 
 {% block content %}
     <h3> home sales</h3>
-
 
     <div class="container mt-3">
         {% comment %} form {% endcomment %}
@@ -24,8 +25,14 @@
                 </form>
             </div>
 
+            {% comment %}  place for drop zone {% endcomment %}
             <div class="col-7">
-
+                <form class="dropzone mt-4" id="drop_form">
+                    {% csrf_token %}
+                    <div class="fallback">
+                        <input name="file" type="file" multiple/>
+                    </div>
+                </form>
             </div>
         </div>
         {% comment %} end form {% endcomment %}

@@ -143,3 +143,5 @@ def _get_chart(chart_type, data, **kwargs):
 def _df_to_html(df):
     # return table as html bootstrap element
     return df.to_html(classes=["table-bordered", "table-striped", "table-hover", "table"])
+
+

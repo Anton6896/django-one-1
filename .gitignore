@@ -1,5 +1,15 @@
 .idea
 
+# drop zone ignore
+build
+components
+node_modules
+.DS_Store
+.sass-cache
+_site
+_config.yaml
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

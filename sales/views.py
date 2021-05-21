@@ -1,11 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 
 from reports.forms import ReportForm
 from sales.models import Sale
 from .forms import SaleSearchForm
 
-from .utils import sales_and_positions
+from .utils.utils import sales_and_positions
 
 
 def home_view(request):
@@ -47,3 +47,7 @@ class SalesDetailView(DetailView):
     model = Sale
     template_name = 'sales/detail.html'
     context_object_name = 'sale'
+
+
+class UploadTemplateView(TemplateView):
+    template_name = 'sales/from_file.html'
