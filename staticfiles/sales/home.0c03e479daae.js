@@ -31,11 +31,9 @@ let alert_creator = (type, msg) => {
 
 report_btn.addEventListener('click', () => {
 
-    // insert report img to the report body
     img_chart.setAttribute('class', 'w-100')  // bootstrap sizing
     modal_body.before(img_chart)  // insert at top of form
 
-    // send ajax at form creation
     report_form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -51,12 +49,13 @@ report_btn.addEventListener('click', () => {
             url: '/reports/create_report/',
             data: form_data,
             success: function (response) {
+                console.log("success ++++++++")
                 alert_creator('success', "report created")
-
                 // close modal after 2 sec
                 setTimeout(() => {
                     $('#reportModal').modal('toggle');
                 }, 2000)
+
             },
             error: function (error) {
                 console.log("ERROR ================")

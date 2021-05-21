@@ -22,7 +22,7 @@
                     <td><a href="{{ report.get_absolute_url }}">{{ report.name }}</a></td>
                     <td>{{ report.author.user }}</td>
                     <td>{{ report.created }}</td>
-                    <td><a href="#">pdf</a></td>
+                    <td><a href="{% url 'reports:pdf_view' pk=report.pk %}">pdf</a></td>
 
                 </tr>
             {% endfor %}

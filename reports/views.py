@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from profiles.models import Profile
@@ -71,9 +71,10 @@ def delete_report(request):
     })
 
 
-def render_pdf_view(request):
+def render_pdf_view(request, pk):
     template_path = 'reports/pdf_to.html'
-    context = {'pdf_data': 'this is your template context'}
+    report_obj = get_object_or_404(Report, pk=pk)
+    context = {'report_obj': report_obj}
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
     # if download
