@@ -1,3 +1,9 @@
 .not-visible {
     visibility: hidden;
 }
+
+
+.pdf_padding {
+    color: red;
+    text-align: center;
+}

@@ -3,34 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    {% comment %}
+    must add all style manual
+    {% endcomment %}
+    <style>
+        body {
+
+        }
+
+        .title {
+
+            text-align: center;
+        }
+
+        .sig {
+            text-align: right;
+        }
+
+        .graph {
+            padding: 5px;
+            width: 600px;
+        }
+
+    </style>
+
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h3>{{ report_obj.name }}</h3>
-            <hr>
-            <p>{{ report_obj.remarks }}</p>
-        </div>
-        <div class="col">
-            <img src="{{ report_obj.image.path }}" class="img-fluid" alt="...">
-        </div>
-    </div>
-</div>
-<hr>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            Column
-        </div>
-        <div class="col">
-            Column
-        </div>
-        <div class="col">
-            Column
-        </div>
-    </div>
-</div>
+<header>
+    <h1 class="title">{{ report_obj.name }}</h1>
+    <hr>
+</header>
 
+<main>
+    <h4>Remarks: </h4>
+    <p> {{ report_obj.remarks }}</p>
+    <img src="{{ report_obj.image.path }}" class="graph" alt="...">
+</main>
+
+<footer>
+    <hr>
+    <div class="sig">
+        <p>created : {{ report_obj.created }}</p>
+        <p>by: {{ report_obj.author.user }}</p>
+    </div>
+
+</footer>
 </body>
 </html>
