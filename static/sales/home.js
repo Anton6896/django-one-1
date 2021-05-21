@@ -4,7 +4,7 @@
  * on the way adding some beauty to the frontEnd (like hiding buttons when its needed )
  * */
 
-console.log(" **** static loaded ")
+console.log("-- home js loaded ")
 
 let report_btn = document.getElementById("report_btn");
 let img_chart = document.getElementById("img_chart");

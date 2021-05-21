@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block scripts %}
-
+    <link rel="stylesheet" href="{% static "dropzone/dropcss.css" %}">
+    <script src="{% static "dropzone/dropzone.js" %}" defer></script>
 {% endblock scripts %}
-
 {% block content %}
-
-
+    <h3> upload sale csv file</h3>
+    <form class="dropzone" id="csv_dropzone">
+        {% csrf_token %}
+        <div class="fallback">
+            <input name="file" type="file" multiple/>
+        </div>
+    </form>
 {% endblock content %}

@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView
 
@@ -50,4 +51,13 @@ class SalesDetailView(DetailView):
 
 
 class UploadTemplateView(TemplateView):
+    """
+    using js for the dropzone from https://www.dropzonejs.com/#usage
+    i took all dropzone.css and dropzone.js from package
+    using in static/dropzone/...
+    """
     template_name = 'sales/from_file.html'
+
+
+def upload_csv_files(request):
+    return HttpResponse()
