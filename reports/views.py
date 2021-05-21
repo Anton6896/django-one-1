@@ -74,6 +74,7 @@ def delete_report(request):
 def render_pdf_view(request, pk):
     template_path = 'reports/pdf_to.html'
     report_obj = get_object_or_404(Report, pk=pk)
+    # all style must be added manual as css styling
     context = {'report_obj': report_obj}
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')

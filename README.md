@@ -18,3 +18,5 @@ this data, user can see all reports history.
 * [Heroku](https://devcenter.heroku.com/) as server
 * [bootstrap5](https://getbootstrap.com/docs/5.0/components/accordion/)
 * [xhtml2pdf](https://xhtml2pdf.readthedocs.io/en/latest/usage.html) as pdf creator
+* [dropzone](https://www.dropzonejs.com/)
+* [icon generator](https://favicon.io/)
