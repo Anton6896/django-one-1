@@ -8,7 +8,7 @@ Dropzone.autoDiscover = false  // value from dropzone.js
 
 // Create dropzones programmatically
 let myDropzone = new Dropzone('#drop_form', {
-    url: '/upload_csv/',
+    url: '/upload_csv/', // providing url that wil catch the file on upload
     init: function () {
         this.on('sending', function (file, xhr, formData) {
             console.log("-- sending")
@@ -18,5 +18,4 @@ let myDropzone = new Dropzone('#drop_form', {
     moxFiles: 3,
     maxFilesize: 3, //mb
     acceptedFiles: '.csv'
-
 })
