@@ -1,10 +1,11 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView
 
 from reports.forms import ReportForm
-from sales.models import Sale
+from sales.models import Sale, Position, Csv
 from .forms import SaleSearchForm
-
+import csv
 from .utils.utils import sales_and_positions
 
 
@@ -49,5 +50,21 @@ class SalesDetailView(DetailView):
     context_object_name = 'sale'
 
 
-class UploadTemplateView(TemplateView):
-    template_name = 'sales/from_file.html'
+def upload_csv_files(request):
+    """
+    using js for the dropzone from https://www.dropzonejs.com/#usage
+    i took all dropzone.css and dropzone.js from package
+    using in static/dropzone/...
+    """
+    print('---- ready for use data ')
+
+    if request.method == "POST":
+        file_csv = request.FILES.get('file')
+        csv_obj = Csv.objects.create(file_name=file_csv)
+
+        with open(csv_obj.file_name.path, 'r') as f:
+            data = csv.reader(f)
+            for row in data:
+                print(row, type(row))
+
+    return HttpResponse()

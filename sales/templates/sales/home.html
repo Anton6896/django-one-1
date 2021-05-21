@@ -6,8 +6,9 @@
 {# additioal js scripts above main #}
 {% block scripts %}
     <script src="{% static "sales/home.js" %}" defer></script>
-    <script src="{% static "sales/upload.js" %}" defer></script>
-
+    <script src="{% static "dropzone/dropzone.js" %}" defer></script>
+    <script src="{% static "dropzone/upload.js" %}" defer></script>
+    <link rel="stylesheet" href="{% static "dropzone/dropcss.css" %}">
 {% endblock scripts %}
 
 {% block content %}
@@ -26,14 +27,15 @@
             </div>
 
             {% comment %}  place for drop zone {% endcomment %}
-            <div class="col-7">
-                <form class="dropzone mt-4" id="drop_form">
+            <div class="col">
+                <form class="dropzone mt-4 dz" id="drop_form" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="fallback">
                         <input name="file" type="file" multiple/>
                     </div>
                 </form>
             </div>
+
         </div>
         {% comment %} end form {% endcomment %}
 
