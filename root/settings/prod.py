@@ -2,14 +2,13 @@
 prod settings
 """
 
-<<<<<<< HEAD
+
 ALLOWED_HOSTS = ['https://django-one.herokuapp.com/', ]
 DEBUG = False
 
-=======
+
 ALLOWED_HOSTS = ['django-one.herokuapp.com', ]
 DEBUG = True
->>>>>>> 7652a068f3665188437a88b0c050bffe3ad3b239
 
 DATABASES = {
     'default': {
