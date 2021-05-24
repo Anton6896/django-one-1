@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3> all sales : </h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for sale in sale_list %}
+            <div class="col">
+                <div class="card">
+                    <img src="#" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ sale.sales_man.user }} created at {{ sale.created }}</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="{{ sale.get_absolute_url }}" class="btn btn-primary">{{ sale.transaction_id }}</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
+

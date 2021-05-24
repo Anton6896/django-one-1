@@ -18,7 +18,13 @@
     using bootstrap 5
     https://getbootstrap.com/docs/5.0/components/navbar/
     {% endcomment %}
-    <title>SuperOne | {% block title %} {% endblock title %}</title>
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>SuperOne-1</title>
+    {% endif %}
+
+    <link rel="icon" href="{% static 'nav_icon.png' %}" type="image/png">
 </head>
 <body>
 
@@ -27,6 +33,19 @@
 </nav>
 
 {# messages #}
+<div class="container mt-3">
+    {% if messages %}
+        {% for element in messages %}
+
+            <div class="alert alert-{{ element.tags }} alert-dismissible fade show" role="alert">
+                {{ element }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+</div>
+
 
 {# end messags #}
 
@@ -38,11 +57,18 @@
 
 
 <footer>
-    <!-- todo footer -->
+    {% include "footer.html" %}
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 </body>
 </html>

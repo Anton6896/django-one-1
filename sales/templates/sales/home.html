@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{# additioal js scripts above main #}
+{% block scripts %}
+    <script src="{% static "sales/home.js" %}" defer></script>
+    <script src="{% static "dropzone/dropzone.js" %}" defer></script>
+    <script src="{% static "dropzone/upload.js" %}" defer></script>
+    <link rel="stylesheet" href="{% static "dropzone/dropcss.css" %}">
+{% endblock scripts %}
+
+{% block content %}
+    <h3> home sales</h3>
+
+    <div class="container mt-3">
+        {% comment %} form {% endcomment %}
+        <div class="row">
+            <div class="col">
+                {% comment %} look for the sales {% endcomment %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{ sale_form | crispy }}
+                    <button id="submit_search" type="submit" class="btn btn-primary mt-3 mb-5">Look</button>
+                </form>
+            </div>
+
+            {% comment %}  place for drop zone {% endcomment %}
+            <div class="col">
+                <form class="dropzone mt-4 dz" id="drop_form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="fallback">
+                        <input name="file" type="file" multiple/>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        {% comment %} end form {% endcomment %}
+
+        {% comment %} output from form {% endcomment %}
+        <div class="row">
+            <div class="col">
+                {% if data %}
+                    <p> {{ data | safe }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {% if data %}
+                    <p> {{ by_id | safe }}</p>
+                {% endif %}
+            </div>
+            <div class="col">
+                {% if data %}
+                    <p> {{ by_date | safe }}</p>
+                {% endif %}
+            </div>
+
+        </div>
+
+        {% comment %} chart {% endcomment %}
+        <div class="row mb-5">
+            <div class="col">
+                {% if data %}
+                    <img id="img_chart" src="data:image/png;base64, {{ chart | safe }}" alt="...">
+                {% endif %}
+                <br>
+
+                <!-- Modal for reporting -->
+                <button id="report_btn" type="button"
+                        class="not-visible btn btn-secondary mb-5"
+                        data-bs-toggle="modal"
+                        data-bs-target="#reportModal">
+                    add report
+                </button>
+
+
+                <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="reportModalLabel">Report form</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                <br>
+
+                            </div>
+
+
+                            {% comment %}  inset img_chart via js  {% endcomment %}
+                            <div class="modal-body" id="report_modal_body">
+                                <div id="alert_box"></div>
+                                <br>
+                                <form method="POST" id="report_form">
+                                    {% csrf_token %}
+                                    {{ report_form | crispy }}
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
+                                        <button id="report_save" type="submit" class="btn btn-primary">Save report
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}

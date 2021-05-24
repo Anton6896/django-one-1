@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h3> List </h3>
+    {% if reports_list %}
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Created by</th>
+                <th scope="col">Date</th>
+                <th scope="col">pdf</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for report in reports_list %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="{{ report.get_absolute_url }}">{{ report.name }}</a></td>
+                    <td>{{ report.author.user }}</td>
+                    <td>{{ report.created }}</td>
+                    <td><a href="{% url 'reports:pdf_view' pk=report.pk %}">pdf</a></td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+
+
+    {% endif %}
+
+{% endblock content %}
+

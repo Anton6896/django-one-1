@@ -7,12 +7,13 @@ from profiles.models import Profile
 from django.utils import timezone
 
 from root.utils import generate_id
+from django.shortcuts import reverse
 
 """
-for ech sale have one position 
+for ech sale have couple positions ! m2m field 
 ech sale have sales_man (Profile) and user (Customer) and can have couple Positions on it .
-(one sales_name on sale can sale 1-shirt , 3-pents etc. )
-ech Position have amount and price for this amount
+(one sales_name on sale can sale 1-shirt(pos1) , 3-pents(pos2) etc. )
+ech Position have amount and price for some product that was sailed 
 """
 
 
@@ -35,6 +36,11 @@ class Position(models.Model):
         self.price = self.product.price * self.quantity
         return super().save(*args, **kwargs)
 
+    def get_sale_id(self):
+        # revers relation in orm db
+        sale_obj = self.sale_set.first()
+        return sale_obj.id
+
 
 class Sale(models.Model):
     """
@@ -52,6 +58,9 @@ class Sale(models.Model):
     class Meta:
         db_table = 'sale'
 
+    def get_absolute_url(self):
+        return reverse('sales:detail', kwargs={"pk": self.pk})
+
     def __str__(self):
         return f"id: {str(self.transaction_id)} - at: {self.created.strftime('%d/%m/%Y')}," \
                f" total price: {self.total_price}"
@@ -66,7 +75,6 @@ class Sale(models.Model):
             self.transaction_id = generate_id(17)
 
         return super().save(*args, **kwargs)
-
 
     def get_positions(self):
         return self.positions.all()

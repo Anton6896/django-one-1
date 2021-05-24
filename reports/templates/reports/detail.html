@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block scripts %}
+    <script src="{% static "reports/report.js" %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+    <div class="container">
+        <h3> Details for {{ report_obj.name }} :</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <h5>Remarks by {{ report_obj.author.user }}</h5>
+                <p>{{ report_obj.remarks }}</p>
+            </div>
+            <div class="col-sm-6">
+                <img src="{{ report_obj.image.url }}" class="img-fluid" alt="...">
+            </div>
+        </div>
+
+        {% if user.is_authenticated %}
+            {% if report_obj.author.user == user %}
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Delete report
+                </button>
+            {% endif %}
+        {% endif %}
+        <a href="{% url 'reports:pdf_view' pk=report_obj.pk %}">
+            <button type="button" class="btn btn-info">PDF</button>
+        </a>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="form_delete" action="{% url 'reports:list' %}" method="POST">
+                        <div class="modal-body">
+                            {% csrf_token %}
+                            <p>are you sure ? </p>
+                            {{ form.text.as_hidden }}
+                            <p hidden id="transfer"> {{ report_obj.pk }} </p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="delete_btn" type="submit" class="btn btn-danger">delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock content %}
+
