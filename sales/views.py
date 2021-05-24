@@ -38,7 +38,6 @@ def home_view(request):
     return render(request, 'sales/home.html', context)
 
 
-
 class SaleListView(ListView):
     model = Sale
     template_name = 'sales/main.html'
