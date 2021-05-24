@@ -3,7 +3,7 @@ prod settings
 """
 
 
-ALLOWED_HOSTS = ['https://django-one.herokuapp.com/', ]
+ALLOWED_HOSTS = ['django-one.herokuapp.com', ]
 DEBUG = False
 
 DATABASES = {
