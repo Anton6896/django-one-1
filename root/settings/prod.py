@@ -4,7 +4,7 @@ prod settings
 
 
 ALLOWED_HOSTS = ['django-one.herokuapp.com', ]
-DEBUG = False
+DEBUG = True
 
 DATABASES = {
     'default': {
