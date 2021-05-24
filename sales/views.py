@@ -40,7 +40,7 @@ def home_view(request):
 
 class SaleListView(ListView):
     model = Sale
-    template_name = 'sales/main.html'
+    template_name = 'sales/list.html'
     context_object_name = 'sale_list'
 
 
