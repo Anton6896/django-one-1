@@ -6,10 +6,6 @@ prod settings
 ALLOWED_HOSTS = ['https://django-one.herokuapp.com/', ]
 DEBUG = False
 
-
-ALLOWED_HOSTS = ['django-one.herokuapp.com', ]
-DEBUG = True
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
