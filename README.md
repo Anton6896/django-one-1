@@ -10,7 +10,8 @@ the search field from date to date, by different graph that shown by date or sal
 this data, user can see all reports history.
 user can upload csv file and Django will handle the file data throe the db 
 
-# Using tech
+# Using tech 
+[app](https://django-one.herokuapp.com/) online 
 
 * [bootstrap5](https://getbootstrap.com/docs/5.0/components/navbar/)
 * [PostgreSQL](https://www.postgresql.org/) as rdb
