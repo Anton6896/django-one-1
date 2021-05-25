@@ -40,7 +40,7 @@ def csv_handler(file, request):
                 continue
 
             try:
-                product_obj = Products.objects.get(name__iexact=product)
+                product_obj = Products.objects.get(name__iexact=product).first()
                 # anti sql injection (name must be less then 20 chars)
                 if len(customer) > 20:
                     customer = customer[:20]
