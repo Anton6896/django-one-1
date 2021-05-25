@@ -27,9 +27,9 @@
             </div>
 
             <div class="col">
+                <div id="file_alert_box"></div>
                 {% comment %}  place for drop zone {% endcomment %}
                 {% if user.is_authenticated %}
-
                     <form class="dropzone mt-4 dz" id="drop_form" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="fallback">
