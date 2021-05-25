@@ -21,7 +21,10 @@ let myDropzone = new Dropzone('#drop_form', {
         this.on('sending', function (file, xhr, formData) {
             console.log("-- sending")
             formData.append('csrfmiddlewaretoken', csrf_upload)
-            file_alert('success', "csv uploaded")
+
+            setTimeout(() => {
+                file_alert('success', "csv uploaded")
+            }, 2000)
         })
     },
     moxFiles: 3,
