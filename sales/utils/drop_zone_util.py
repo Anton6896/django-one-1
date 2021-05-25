@@ -33,6 +33,12 @@ def csv_handler(file, request):
             customer = str(line[4])
             date = parse_date(line[5])
 
+            if Sale.objects.filter(
+                    Q(transaction_id=transaction_id) &
+                    Q(created=date)
+            ).exists():
+                continue
+
             try:
                 product_obj = Products.objects.get(name__iexact=product)
                 # anti sql injection (name must be less then 20 chars)
@@ -55,11 +61,6 @@ def csv_handler(file, request):
                 )
 
                 # prevent for creation same object
-                if Sale.objects.filter(
-                        Q(transaction_id=transaction_id) &
-                        Q(created=date)
-                ).exists():
-                    continue
 
                 sale_obj, _ = Sale.objects.get_or_create(
                     transaction_id=transaction_id,
