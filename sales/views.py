@@ -59,6 +59,6 @@ def upload_csv_files(request):
     """
     if request.method == "POST":
         file_csv = request.FILES.get('file')
-        csv_handler(file_csv)
+        csv_handler(file_csv, request)
 
     return HttpResponse()
