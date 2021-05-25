@@ -40,7 +40,7 @@ def csv_handler(file, request):
                 continue
 
             try:
-                customer_obj, _ = Customer.objects.get_or_create(name__iexact=customer)
+                customer_obj, _ = Customer.objects.get_or_create(name__iexact=customer).first()
                 profile_obj = Profile.objects.get(user=request.user)
                 product_obj = Products.objects.get(name__iexact=product).first()
                 # anti sql injection (name must be less then 20 chars)
@@ -50,8 +50,6 @@ def csv_handler(file, request):
             except Products.DoesNotExist or Customer.DoesNotExist:
                 product_obj = customer_obj = None
                 print("======= Cant get product or customer from csv file =======")
-
-
 
             # create position and Sale for this position
             if product_obj and customer_obj:
