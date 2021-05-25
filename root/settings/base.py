@@ -69,6 +69,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'sales/templates'),
             os.path.join(BASE_DIR, 'reports/templates'),
+            os.path.join(BASE_DIR, 'profiles/templates'),
 
         ],
         'APP_DIRS': True,
@@ -87,24 +88,6 @@ WSGI_APPLICATION = 'root.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'dcag045nqie3kj',
-#         'USER': 'kyetdefmiyibus',
-#         'PASSWORD': 'ef66328984fa42653a3867ffc74da689f22f4625a5896e6fb392a90709a79fb6',
-#         'HOST': 'ec2-63-34-97-163.eu-west-1.compute.amazonaws.com',
-#         'POST': '',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

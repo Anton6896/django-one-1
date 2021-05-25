@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include('sales.urls')),  # home page hosting
     path("customers/", include('customers.urls')),
+    path("profile/", include('profiles.urls')),
     path("reports/", include('reports.urls'))
 
 ]
