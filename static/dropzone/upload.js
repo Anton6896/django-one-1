@@ -6,7 +6,7 @@ let drop_form = document.getElementById("drop_form")
 
 Dropzone.autoDiscover = false  // value from dropzone.js
 
-// Create dropzones programmatically
+// Create dropzone programmatically
 let myDropzone = new Dropzone('#drop_form', {
     url: '/upload_csv/', // providing url that wil catch the file on upload
     init: function () {

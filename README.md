@@ -3,15 +3,20 @@
 project idea from  [freeCodeCamp.org](https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ)
 , [lessons](https://www.youtube.com/watch?v=04L0BbAcCpQ)
 
-# Epic
+# user stories
 
-User creating sales , ech sale contain some product , amount and price. user cab look for his preferred sales through
-the search field from date to date, by different graph that shown by date or sale transaction. user can save report for
-this data, user can see all reports history.
-user can upload csv file and Django will handle the file data throe the db 
+* user creating sales , ech sale contain some product , amount and price.
+* user cab look for his preferred sales through the search field from date to date, by different graph that shown by date
+or sale transaction. 
+* user can save report for this data, and download it as pdf format
+* user can see all reports history.
+* user can upload csv that have 
+(transaction_id, product, amount, customer_name, "yyyy-mm-dd") for creating sale from csv file
 
-# Using tech 
-[app](https://django-one.herokuapp.com/) online 
+
+# Using tech
+
+[app](https://django-one.herokuapp.com/) online
 
 * [bootstrap5](https://getbootstrap.com/docs/5.0/components/navbar/)
 * [PostgreSQL](https://www.postgresql.org/) as rdb

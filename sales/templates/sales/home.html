@@ -26,14 +26,22 @@
                 </form>
             </div>
 
-            {% comment %}  place for drop zone {% endcomment %}
             <div class="col">
-                <form class="dropzone mt-4 dz" id="drop_form" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="fallback">
-                        <input name="file" type="file" multiple/>
-                    </div>
-                </form>
+                {% comment %}  place for drop zone {% endcomment %}
+                {% if user.is_authenticated %}
+
+                    <form class="dropzone mt-4 dz" id="drop_form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="fallback">
+                            <input name="file" type="file" multiple/>
+                        </div>
+                    </form>
+
+                {% else %}
+                    <hr class="mt-4">
+                    <h4>you must be authenticated for uploading csv files</h4>
+                    <hr>
+                {% endif %}
             </div>
 
         </div>
