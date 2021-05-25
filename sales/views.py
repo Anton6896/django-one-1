@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView
+from django.contrib.auth.decorators import login_required
 
 from reports.forms import ReportForm
-from sales.models import Sale, Position, Csv
+from sales.models import Sale
 from .forms import SaleSearchForm
 
 from .utils.utils import sales_and_positions
@@ -51,6 +52,7 @@ class SalesDetailView(DetailView):
     context_object_name = 'sale'
 
 
+@login_required
 def upload_csv_files(request):
     """
     using js for the dropzone from https://www.dropzonejs.com/#usage

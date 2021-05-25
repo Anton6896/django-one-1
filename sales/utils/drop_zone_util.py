@@ -2,8 +2,10 @@ import csv
 
 from customers.models import Customer
 from products.models import Products
+from profiles.models import Profile
 from sales.models import Csv, Position, Sale
 from django.utils.dateparse import parse_date
+from django.db.models import Q
 
 """
 this is bad logic for creating sale and positions for it 
@@ -37,6 +39,7 @@ def csv_handler(file, request):
                 if len(customer) > 20:
                     customer = customer[:20]
                 customer_obj, _ = Customer.objects.get_or_create(name__iexact=customer)
+                profile_obj = Profile.objects.get(user=request.user)
 
             except Products.DoesNotExist or Customer.DoesNotExist:
                 product_obj = customer_obj = None
@@ -45,18 +48,27 @@ def csv_handler(file, request):
             # create position and Sale for this position
             if product_obj and customer_obj:
                 """^^^ not good ^^^"""
-                sale_obj = None
-                position_obj, created = Position.objects.get_or_create(
+                position_obj, _ = Position.objects.get_or_create(
                     product=product_obj,
                     quantity=quantity,
                     created=date
                 )
 
-                if created:
-                    sale_obj, _ = Sale.objects.get_or_create(
-                        transaction_id=transaction_id,
-                        positions=position_obj,
-                        customer=customer_obj,
-                        sales_man=request.user,
-                        created=date
-                    )
+                # prevent for creation same object
+                if Sale.objects.filter(
+                        Q(transaction_id=transaction_id) &
+                        Q(created=date)
+                ).exists():
+                    continue
+
+                sale_obj, _ = Sale.objects.get_or_create(
+                    transaction_id=transaction_id,
+                    customer=customer_obj,
+                    sales_man=profile_obj,
+                    created=date
+                )
+                sale_obj.positions.add(position_obj)
+                sale_obj.save()
+
+                if sale_obj:
+                    print(f" -- Sale obj created ")
