@@ -11,6 +11,7 @@ let file_alert = (type, msg) => {
             ${msg}
         </div>
     `
+    file_alert_box.style.display = 'block'
 }
 
 Dropzone.autoDiscover = false  // value from dropzone.js
@@ -21,7 +22,12 @@ let myDropzone = new Dropzone('#drop_form', {
         this.on('sending', function (file, xhr, formData) {
             console.log("-- sending")
             formData.append('csrfmiddlewaretoken', csrf_upload)
+
             file_alert('success', "csv uploaded")
+            setTimeout(() => {
+                file_alert_box.style.display = 'none'
+            }, 2000)
+
         })
     },
     moxFiles: 3,
