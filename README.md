@@ -12,6 +12,7 @@ or sale transaction.
 * user can see all reports history.
 * user can upload csv that have 
 (transaction_id, product, amount, customer_name, "yyyy-mm-dd") for creating sale from csv file
+* each user have profile 
 
 
 # Using tech

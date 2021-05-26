@@ -10,4 +10,6 @@ urlpatterns = [
     path('sales/<int:pk>/', SalesDetailView.as_view(), name='detail'),
     path('upload_csv/', upload_csv_files, name='upload_csv'),
 
+
+
 ]

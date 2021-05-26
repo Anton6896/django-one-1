@@ -81,7 +81,7 @@ class Sale(models.Model):
 
 
 class Csv(models.Model):
-    file_name = models.FileField(upload_to='csv_files')
+    file_name = models.FileField(upload_to='csv_files', null=True)
     activated = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
