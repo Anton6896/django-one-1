@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 from profiles.models import Profile
 from .forms import ProfileForm
 
@@ -21,8 +21,12 @@ def profile_view(request):
         instance=profile_obj
     )
 
+    if profile_form.is_valid():
+        profile_form.save()
+        messages.success(request, f'your profile has been updated')
+
     context = {
-        'profile': profile_obj,
+        'profile_obj': profile_obj,
         'title': 'Profile',
         'profile_form': profile_form
     }

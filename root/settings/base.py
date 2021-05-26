@@ -70,6 +70,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'sales/templates'),
             os.path.join(BASE_DIR, 'reports/templates'),
             os.path.join(BASE_DIR, 'profiles/templates'),
+            os.path.join(BASE_DIR, 'root/templates'),
 
         ],
         'APP_DIRS': True,
@@ -135,3 +136,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static", 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 django_heroku.settings(locals())
+
+LOGIN_URL = 'login_user'
+LOGIN_REDIRECT_URL = 'sales:home'
+LOGOUT_REDIRECT_URL = 'sales:home'

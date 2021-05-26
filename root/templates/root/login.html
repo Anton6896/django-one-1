@@ -4,21 +4,22 @@
 
 {% block content %}
     <div>
-        <h2> profile page of - {{ profile.user.username }}</h2>
+        <h2> Login page </h2>
         <div class="container">
             <div class="row">
                 <div class="col">
                     <form action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{ profile_form | crispy }}
+                        {{ form | crispy }}
                         <button id="submit_profile_form" type="submit" class="btn btn-primary mt-3 mb-5">submit</button>
                     </form>
                 </div>
+
                 <div class="col-md-auto">
+
                 </div>
                 <div class="col col">
-                    <img src="{{ profile_obj.avatar.url }}" class="rounded img-thumbnail my_img" alt="...">
-                    <p>{{ profile_obj.bio }}</p>
+
                 </div>
             </div>
         </div>
