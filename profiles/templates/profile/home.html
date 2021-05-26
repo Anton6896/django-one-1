@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
-    <h2> profile page of - {{ profile.user.username }}</h2>
+    <div>
+        <h2> profile page of - {{ profile.user.username }}</h2>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ profile_form | crispy }}
+                        <button id="submit_profile_form" type="submit" class="btn btn-primary mt-3 mb-5">submit</button>
+                    </form>
+                </div>
+
+                <div class="col">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
