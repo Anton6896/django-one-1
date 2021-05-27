@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import register
+from .views import register, readme_view
 from django.contrib.auth import views as auth_views
 
 app_name = 'root_space'
@@ -31,6 +31,7 @@ urlpatterns = [
     path('regster/', register, name='register_user'),
     path('login/', auth_views.LoginView.as_view(template_name='root/login.html'), name='login_user'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout_user'),
+    path('readme/', readme_view, name='readme_view'),
 
 ]
 

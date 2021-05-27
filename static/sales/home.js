@@ -56,6 +56,7 @@ report_btn.addEventListener('click', () => {
                 // close modal after 2 sec
                 setTimeout(() => {
                     $('#reportModal').modal('toggle');
+                    report_form.reset();
                 }, 2000)
             },
             error: function (error) {
