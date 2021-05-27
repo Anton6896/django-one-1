@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h2> Read Me :</h2>
+        <div class="row mt-5">
+            <div class="col">
+                <h2>stories:</h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">user can register , login, logout</li>
+                    <li class="list-group-item">user can upload sale list as csv (transaction_id, product, amount,
+                        customer_name,
+                        "yyyy-mm-dd") format , they will be added to db
+                    </li>
+                    <li class="list-group-item">user can see sales by specified dates</li>
+                    <li class="list-group-item">user can generate reports by seeing sale</li>
+                    <li class="list-group-item">user can save report as pdf file</li>
+                    <li class="list-group-item">user can update his profile</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col col">
+                <h2> using:</h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">bootstrap5 as front
+                    </li>
+                    <li class="list-group-item">PostgreSQL as db</li>
+                    <li class="list-group-item">Pandas for table calculations</li>
+                    <li class="list-group-item">Matplotlib for tables visualization</li>
+                    <li class="list-group-item">Heroku as server</li>
+                    <li class="list-group-item">xhtml2pdf as pdf creator</li>
+                    <li class="list-group-item"><a href="https://www.dropzonejs.com/">dropzone</a> js library</li>
+                    <li class="list-group-item">icon <a href="https://favicon.io/">generator</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-3">
+            Project idea from <a href="https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ">freeCodeCamp.org</a>
+            You always should always give a credit for owner of ideas !! great thanks !! all my code can be found on <a
+                href="https://github.com/Anton6896/django-one-1">Github</a>
+        </div>
+    </div>
+
+{% endblock %}

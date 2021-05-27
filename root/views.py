@@ -27,3 +27,7 @@ def register(request):
         'form': form,
         'title': 'register'
     })
+
+
+def readme_view(request):
+    return render(request, 'root/readme.html', {'title': 'ReadMe'})

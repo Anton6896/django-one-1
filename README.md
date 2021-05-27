@@ -24,7 +24,6 @@ or sale transaction.
 * [Pandas](https://pandas.pydata.org/) for calculation with data
 * [Matplotlib](https://matplotlib.org/) as plots for visualizing data
 * [Heroku](https://devcenter.heroku.com/) as server
-* [bootstrap5](https://getbootstrap.com/docs/5.0/components/accordion/)
 * [xhtml2pdf](https://xhtml2pdf.readthedocs.io/en/latest/usage.html) as pdf creator
 * [dropzone](https://www.dropzonejs.com/)
 * [icon generator](https://favicon.io/)
