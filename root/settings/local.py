@@ -4,7 +4,7 @@ import os
 ALLOWED_HOSTS = ['127.0.0.1', ]
 DEBUG = True
 
-SECRET_KEY = 'django-insecure-ww(aek15i5y_kzs^-h_!*qn#g@k3q=qcf@!xrt1!2n56bdapu!'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DATABASES = {
     'default': {
