@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'sales',
     'crispy_forms',
     'jquery',
+    'storages',
+
 
 ]
 
